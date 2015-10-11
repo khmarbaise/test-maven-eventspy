@@ -11,13 +11,15 @@ Overview
 
 Test for EventSpy 
 
-ATTENTION: Runnin the integration tests via
+ATTENTION: Running the integration tests via
 
 ```
-mvn -Prun-its clean veriy
+mvn -Prun-its clean verify
 ```
-will run correctly with Maven 3.1.1... if you don't have set any value
+will run correctly with Maven 3.1.1...and above if you don't have set any value
 in MAVEN_OPTS (https://issues.apache.org/jira/browse/MINVOKER-172).
+
+For Maven 3.3.X you don't need to bother about MAVEN_OPTS.
 
 Parent Check
 ------------
