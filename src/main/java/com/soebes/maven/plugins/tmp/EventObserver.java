@@ -10,6 +10,7 @@ import org.apache.maven.execution.ExecutionEvent;
 import org.apache.maven.execution.MavenExecutionRequest;
 import org.apache.maven.execution.MavenExecutionResult;
 import org.apache.maven.model.Dependency;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.settings.building.SettingsBuildingRequest;
 import org.apache.maven.settings.building.SettingsBuildingResult;
@@ -27,6 +28,8 @@ public class EventObserver
 
     private final Logger LOGGER = LoggerFactory.getLogger( getClass() );
 
+    private final String failure = System.getProperty( "failure" );
+    
     public EventObserver()
     {
         LOGGER.info( "**************************" );
@@ -34,11 +37,20 @@ public class EventObserver
         LOGGER.info( "**************************" );
     }
 
+    private boolean hasFailure() {
+        boolean result = false;
+        if (failure != null) {
+            result = true;
+        }
+        return result;
+    }
     @Override
     public void init( Context context )
         throws Exception
     {
         LOGGER.info( "EventObserver::init() EventSpy Hi there." );
+        LOGGER.info( "EventObserver::init() failure={}.", failure );
+        
     }
 
     /**
@@ -129,6 +141,16 @@ public class EventObserver
     {
         switch ( executionEvent.getType() )
         {
+            case SessionEnded:
+                LOGGER.info( "EventObserver::executionEventHandler({}) {}",
+                             executionEvent.getType().name(), executionEvent );
+                if (hasFailure()) {
+                    if (failure.equalsIgnoreCase( "true" )) {
+                        MavenExecutionResult result = executionEvent.getSession().getResult();
+                        result.addException( new MojoFailureException("failed on purpose" ) );
+                    }
+                }
+                break;
             case ForkFailed:
             case ForkStarted:
             case ForkSucceeded:
@@ -144,7 +166,6 @@ public class EventObserver
             case ProjectSkipped:
             case ProjectStarted:
             case ProjectSucceeded:
-            case SessionEnded:
             case SessionStarted:
                 LOGGER.info( "EventObserver::executionEventHandler({}) {}",
                              executionEvent.getType().name(), executionEvent );
