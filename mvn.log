@@ -1,0 +1,95 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Test Maven EventSpy. 0.1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.6.1:clean (default-clean) @ test-maven-eventspy ---
+[INFO] Deleting /Users/kama/ws-git/test-maven-eventspy/target
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.4:enforce (enforce-maven) @ test-maven-eventspy ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:resources (default-resources) @ test-maven-eventspy ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/kama/ws-git/test-maven-eventspy/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.3:compile (default-compile) @ test-maven-eventspy ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /Users/kama/ws-git/test-maven-eventspy/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.7:testResources (default-testResources) @ test-maven-eventspy ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/kama/ws-git/test-maven-eventspy/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.3:testCompile (default-testCompile) @ test-maven-eventspy ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- gmaven-plugin:1.5:testCompile (default) @ test-maven-eventspy ---
+[INFO] Compiled 5 Groovy classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.18.1:test (default-test) @ test-maven-eventspy ---
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ test-maven-eventspy ---
+[INFO] Building jar: /Users/kama/ws-git/test-maven-eventspy/target/test-maven-eventspy-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-shade-plugin:2.4:shade (default) @ test-maven-eventspy ---
+[INFO] Excluding org.apache.maven:maven-core:jar:3.1.1 from the shaded jar.
+[INFO] Excluding org.apache.maven:maven-model:jar:3.1.1 from the shaded jar.
+[INFO] Excluding org.apache.maven:maven-settings:jar:3.1.1 from the shaded jar.
+[INFO] Excluding org.apache.maven:maven-settings-builder:jar:3.1.1 from the shaded jar.
+[INFO] Excluding org.apache.maven:maven-repository-metadata:jar:3.1.1 from the shaded jar.
+[INFO] Excluding org.apache.maven:maven-plugin-api:jar:3.1.1 from the shaded jar.
+[INFO] Excluding org.apache.maven:maven-model-builder:jar:3.1.1 from the shaded jar.
+[INFO] Excluding org.apache.maven:maven-aether-provider:jar:3.1.1 from the shaded jar.
+[INFO] Excluding org.eclipse.aether:aether-spi:jar:0.9.0.M2 from the shaded jar.
+[INFO] Excluding org.eclipse.aether:aether-impl:jar:0.9.0.M2 from the shaded jar.
+[INFO] Excluding org.eclipse.aether:aether-api:jar:0.9.0.M2 from the shaded jar.
+[INFO] Excluding org.eclipse.aether:aether-util:jar:0.9.0.M2 from the shaded jar.
+[INFO] Excluding org.eclipse.sisu:org.eclipse.sisu.plexus:jar:0.0.0.M5 from the shaded jar.
+[INFO] Excluding javax.enterprise:cdi-api:jar:1.0 from the shaded jar.
+[INFO] Excluding javax.annotation:jsr250-api:jar:1.0 from the shaded jar.
+[INFO] Excluding com.google.guava:guava:jar:16.0.1 from the shaded jar.
+[INFO] Excluding org.sonatype.sisu:sisu-guice:jar:no_aop:3.1.0 from the shaded jar.
+[INFO] Excluding aopalliance:aopalliance:jar:1.0 from the shaded jar.
+[INFO] Excluding org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.0.0.M5 from the shaded jar.
+[INFO] Excluding org.codehaus.plexus:plexus-interpolation:jar:1.19 from the shaded jar.
+[INFO] Excluding org.codehaus.plexus:plexus-utils:jar:3.0.15 from the shaded jar.
+[INFO] Excluding org.codehaus.plexus:plexus-classworlds:jar:2.5.1 from the shaded jar.
+[INFO] Excluding org.codehaus.plexus:plexus-component-annotations:jar:1.5.5 from the shaded jar.
+[INFO] Excluding org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3 from the shaded jar.
+[INFO] Excluding org.sonatype.plexus:plexus-cipher:jar:1.4 from the shaded jar.
+[INFO] Excluding org.apache.maven:maven-artifact:jar:3.1.1 from the shaded jar.
+[INFO] Excluding org.slf4j:slf4j-api:jar:1.7.5 from the shaded jar.
+[INFO] Excluding javax.inject:javax.inject:jar:1 from the shaded jar.
+[INFO] Attaching shaded artifact.
+[INFO] 
+[INFO] --- maven-invoker-plugin:2.0.0:install (pre-integration-tests) @ test-maven-eventspy ---
+[INFO] Installing /Users/kama/ws-git/test-maven-eventspy/pom.xml to /Users/kama/ws-git/test-maven-eventspy/target/local-repo/com/soebes/maven/plugins/test-maven-eventspy/0.1.0-SNAPSHOT/test-maven-eventspy-0.1.0-SNAPSHOT.pom
+[INFO] Installing /Users/kama/ws-git/test-maven-eventspy/target/test-maven-eventspy-0.1.0-SNAPSHOT.jar to /Users/kama/ws-git/test-maven-eventspy/target/local-repo/com/soebes/maven/plugins/test-maven-eventspy/0.1.0-SNAPSHOT/test-maven-eventspy-0.1.0-SNAPSHOT.jar
+[INFO] Installing /Users/kama/ws-git/test-maven-eventspy/target/test-maven-eventspy-0.1.0-SNAPSHOT-mvn325.jar to /Users/kama/ws-git/test-maven-eventspy/target/local-repo/com/soebes/maven/plugins/test-maven-eventspy/0.1.0-SNAPSHOT/test-maven-eventspy-0.1.0-SNAPSHOT-mvn325.jar
+[INFO] 
+[INFO] --- maven-failsafe-plugin:2.18.1:integration-test (default) @ test-maven-eventspy ---
+[INFO] 
+[INFO] --- maven-invoker-plugin:2.0.0:run (integration-tests) @ test-maven-eventspy ---
+[INFO] Building: maven325/pom.xml
+[INFO] ..SKIPPED due to Maven version
+[INFO] Building: maven325-failure/pom.xml
+[INFO] ..SKIPPED due to Maven version
+[INFO] Building: maven33x/pom.xml
+[INFO] ..SUCCESS (2.5 s)
+[INFO] Building: maven33x-failure/pom.xml
+[INFO] ..SUCCESS (2.3 s)
+[INFO] -------------------------------------------------
+[INFO] Build Summary:
+[INFO]   Passed: 2, Failed: 0, Errors: 0, Skipped: 2
+[INFO] -------------------------------------------------
+[INFO] 
+[INFO] --- maven-failsafe-plugin:2.18.1:verify (default) @ test-maven-eventspy ---
+[INFO] Failsafe report directory: /Users/kama/ws-git/test-maven-eventspy/target/failsafe-reports
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 8.567 s
+[INFO] Finished at: 2015-10-12T01:02:25+02:00
+[INFO] Final Memory: 33M/349M
+[INFO] ------------------------------------------------------------------------

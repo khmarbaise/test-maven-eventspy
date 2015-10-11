@@ -1,4 +1,4 @@
-package com.soebes.maven.plugins.tmp;
+package com.soebes.maven.extensions.eventspy;
 
 import java.util.List;
 
