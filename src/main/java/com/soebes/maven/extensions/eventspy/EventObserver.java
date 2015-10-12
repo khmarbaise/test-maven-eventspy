@@ -11,6 +11,8 @@ import org.apache.maven.execution.MavenExecutionRequest;
 import org.apache.maven.execution.MavenExecutionResult;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.project.DependencyResolutionRequest;
+import org.apache.maven.project.DependencyResolutionResult;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.settings.building.SettingsBuildingRequest;
 import org.apache.maven.settings.building.SettingsBuildingResult;
@@ -29,7 +31,7 @@ public class EventObserver
     private final Logger LOGGER = LoggerFactory.getLogger( getClass() );
 
     private final String failure = System.getProperty( "failure" );
-    
+
     public EventObserver()
     {
         LOGGER.info( "**************************" );
@@ -37,20 +39,23 @@ public class EventObserver
         LOGGER.info( "**************************" );
     }
 
-    private boolean hasFailure() {
+    private boolean hasFailure()
+    {
         boolean result = false;
-        if (failure != null) {
+        if ( failure != null )
+        {
             result = true;
         }
         return result;
     }
+
     @Override
     public void init( Context context )
         throws Exception
     {
         LOGGER.info( "EventObserver::init() EventSpy Hi there." );
         LOGGER.info( "EventObserver::init() failure={}.", failure );
-        
+
     }
 
     /**
@@ -93,6 +98,18 @@ public class EventObserver
             {
                 executionResultEventHandler( (MavenExecutionResult) event );
             }
+            else if ( event instanceof DependencyResolutionRequest )
+            {
+                dependencyResolutionRequestEvent( (DependencyResolutionRequest) event );
+            }
+            else if ( event instanceof DependencyResolutionResult )
+            {
+                dependencyResolutionResultEvent( (DependencyResolutionResult) event );
+            }
+//            else if ( event instanceof RepositoryEvent )
+//            {
+//                repositoryEvent( (RepositoryEvent) event );
+//            }
         }
         catch ( Exception e )
         {
@@ -104,6 +121,21 @@ public class EventObserver
     public void close()
     {
         LOGGER.info( "EventObserver: Bye bye." );
+    }
+
+//    private void repositoryEvent( RepositoryEvent event )
+//    {
+//        LOGGER.info( "EventObserver::repositoryEvent", event );
+//    }
+
+    private void dependencyResolutionRequestEvent( DependencyResolutionRequest event )
+    {
+        LOGGER.info( "EventObserver::dependencyResolutionRequestEvent", event );
+    }
+
+    private void dependencyResolutionResultEvent( DependencyResolutionResult event )
+    {
+        LOGGER.info( "EventObserver::dependencyResolutionResultEvent", event );
     }
 
     private void settingsBuilderRequestEvent( SettingsBuildingRequest event )
@@ -142,12 +174,14 @@ public class EventObserver
         switch ( executionEvent.getType() )
         {
             case SessionEnded:
-                LOGGER.info( "EventObserver::executionEventHandler({}) {}",
-                             executionEvent.getType().name(), executionEvent );
-                if (hasFailure()) {
-                    if (failure.equalsIgnoreCase( "true" )) {
+                LOGGER.info( "EventObserver::executionEventHandler({}) {}", executionEvent.getType().name(),
+                             executionEvent );
+                if ( hasFailure() )
+                {
+                    if ( failure.equalsIgnoreCase( "true" ) )
+                    {
                         MavenExecutionResult result = executionEvent.getSession().getResult();
-                        result.addException( new MojoFailureException("failed on purpose" ) );
+                        result.addException( new MojoFailureException( "failed on purpose" ) );
                     }
                 }
                 break;
@@ -167,12 +201,11 @@ public class EventObserver
             case ProjectStarted:
             case ProjectSucceeded:
             case SessionStarted:
-                LOGGER.info( "EventObserver::executionEventHandler({}) {}",
-                             executionEvent.getType().name(), executionEvent );
+                LOGGER.info( "EventObserver::executionEventHandler({}) {}", executionEvent.getType().name(),
+                             executionEvent );
                 break;
             default:
-                LOGGER.info( "EventObserver::executionEventHandler(UNKNOWN) {}",
-                             executionEvent.getType().name() );
+                LOGGER.info( "EventObserver::executionEventHandler(UNKNOWN) {}", executionEvent.getType().name() );
                 break;
         }
     }
