@@ -3,7 +3,6 @@ package com.soebes.maven.extensions.eventspy;
 import java.util.List;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import org.apache.maven.eventspy.AbstractEventSpy;
 import org.apache.maven.execution.ExecutionEvent;
@@ -23,7 +22,6 @@ import org.slf4j.LoggerFactory;
  * @author Karl Heinz Marbaise <khmarbaise@apache.org>
  */
 @Named
-@Singleton
 public class EventObserver
     extends AbstractEventSpy
 {
