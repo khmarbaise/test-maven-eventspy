@@ -15,6 +15,7 @@ import org.apache.maven.project.DependencyResolutionResult;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.settings.building.SettingsBuildingRequest;
 import org.apache.maven.settings.building.SettingsBuildingResult;
+import org.eclipse.aether.RepositoryEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -104,10 +105,10 @@ public class EventObserver
             {
                 dependencyResolutionResultEvent( (DependencyResolutionResult) event );
             }
-//            else if ( event instanceof RepositoryEvent )
-//            {
-//                repositoryEvent( (RepositoryEvent) event );
-//            }
+            else if ( event instanceof RepositoryEvent )
+            {
+                repositoryEvent( (RepositoryEvent) event );
+            }
         }
         catch ( Exception e )
         {
@@ -121,10 +122,11 @@ public class EventObserver
         LOGGER.info( "EventObserver: Bye bye." );
     }
 
-//    private void repositoryEvent( RepositoryEvent event )
-//    {
-//        LOGGER.info( "EventObserver::repositoryEvent", event );
-//    }
+    private void repositoryEvent( RepositoryEvent event )
+    {
+        
+        LOGGER.info( "EventObserver::repositoryEvent {}", event.getType() );
+    }
 
     private void dependencyResolutionRequestEvent( DependencyResolutionRequest event )
     {
