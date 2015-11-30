@@ -124,7 +124,6 @@ public class EventObserver
 
     private void repositoryEvent( RepositoryEvent event )
     {
-        
         LOGGER.info( "EventObserver::repositoryEvent {}", event.getType() );
     }
 
@@ -169,6 +168,13 @@ public class EventObserver
         LOGGER.info( "EventObserver::executionRequestEventHandler", event );
     }
 
+    private void listProject(ExecutionEvent event) {
+        List<MavenProject> sortedProjects = event.getSession().getProjectDependencyGraph().getSortedProjects();
+        for ( MavenProject mavenProject : sortedProjects )
+        {
+            LOGGER.info( "-> {}", mavenProject.getId() );
+        }
+    }
     private void executionEventHandler( ExecutionEvent executionEvent )
     {
         switch ( executionEvent.getType() )
@@ -176,6 +182,7 @@ public class EventObserver
             case SessionEnded:
                 LOGGER.info( "EventObserver::executionEventHandler({}) {}", executionEvent.getType().name(),
                              executionEvent );
+                listProject( executionEvent );
                 if ( hasFailure() )
                 {
                     if ( failure.equalsIgnoreCase( "true" ) )
