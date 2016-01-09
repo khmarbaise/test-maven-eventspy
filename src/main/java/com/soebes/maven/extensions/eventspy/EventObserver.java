@@ -29,7 +29,7 @@ public class EventObserver
 
     private final Logger LOGGER = LoggerFactory.getLogger( getClass() );
 
-    private final String failure = System.getProperty( "failure" );
+    private final Boolean failure = Boolean.getBoolean( "failure" );
 
     public EventObserver()
     {
@@ -185,7 +185,7 @@ public class EventObserver
                 listProject( executionEvent );
                 if ( hasFailure() )
                 {
-                    if ( failure.equalsIgnoreCase( "true" ) )
+                    if ( failure )
                     {
                         MavenExecutionResult result = executionEvent.getSession().getResult();
                         result.addException( new MojoFailureException( "failed on purpose" ) );
